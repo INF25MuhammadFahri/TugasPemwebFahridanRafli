@@ -24,16 +24,17 @@ body {
 header.site-header {
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
-    padding: 18px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 14px 32px;
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
-header.site-header .logo {
+header.site-header .navbar {
+    padding: 0;
+}
+
+.navbar-brand.logo {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--accent);
@@ -42,21 +43,30 @@ header.site-header .logo {
     gap: 10px;
 }
 
-header.site-header .logo img {
+.navbar-brand.logo:hover {
+    color: var(--accent);
+}
+
+.navbar-brand.logo img {
     width: 36px;
     height: 36px;
     object-fit: contain;
 }
 
-nav.main-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 24px;
-    margin: 0;
-    padding: 0;
+.navbar-toggler {
+    border-color: var(--border);
+    padding: 4px 8px;
 }
 
-nav.main-nav a {
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem var(--accent-soft);
+}
+
+.main-nav {
+    gap: 8px;
+}
+
+.main-nav .nav-link {
     text-decoration: none;
     color: var(--text-main);
     font-weight: 500;
@@ -65,8 +75,8 @@ nav.main-nav a {
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-nav.main-nav a:hover,
-nav.main-nav a.active {
+.main-nav .nav-link:hover,
+.main-nav .nav-link.active {
     background: var(--accent-soft);
     color: var(--accent);
 }
