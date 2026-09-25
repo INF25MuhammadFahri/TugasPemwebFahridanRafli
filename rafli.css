@@ -25,17 +25,18 @@ body {
 header.site-header {
   background: var(--bg-card);
   border-bottom: 1px solid var(--border);
-  padding: 18px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 14px 32px;
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: var(--shadow);
 }
 
-header.site-header .logo {
+header.site-header .navbar {
+  padding: 0;
+}
+
+.navbar-brand.logo {
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--accent);
@@ -44,21 +45,30 @@ header.site-header .logo {
   gap: 10px;
 }
 
-header.site-header .logo img {
+.navbar-brand.logo:hover {
+  color: var(--accent);
+}
+
+.navbar-brand.logo img {
   width: 36px;
   height: 36px;
   object-fit: contain;
 }
 
-nav.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
+.navbar-toggler {
+  border-color: var(--border);
+  padding: 4px 8px;
 }
 
-nav.main-nav a {
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem var(--accent-soft);
+}
+
+.main-nav {
+  gap: 8px;
+}
+
+.main-nav .nav-link {
   text-decoration: none;
   color: var(--text-main);
   font-weight: 500;
@@ -67,8 +77,8 @@ nav.main-nav a {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-nav.main-nav a:hover,
-nav.main-nav a.active {
+.main-nav .nav-link:hover,
+.main-nav .nav-link.active {
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -77,13 +87,6 @@ main {
   max-width: 960px;
   margin: 0 auto;
   padding: 48px 24px;
-}
-
-@media (max-width: 640px) {
-  header.site-header {
-    flex-direction: column;
-    gap: 12px;
-  }
 }
 
 footer.site-footer {
@@ -101,6 +104,12 @@ footer.site-footer {
   overflow: hidden;
   margin-bottom: 22px;
   box-shadow: 0 12px 35px rgba(25, 55, 42, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.biodata:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(25, 55, 42, 0.12);
 }
 
 .identity {
@@ -108,12 +117,7 @@ footer.site-footer {
   align-items: center;
   gap: 24px;
   padding: 44px;
-  background: linear-gradient(
-    135deg,
-    #e7f4ed 0%,
-    #f4f8f5 55%,
-    #eef6f1 100%
-  );
+  background: linear-gradient(135deg, #e7f4ed 0%, #f4f8f5 55%, #eef6f1 100%);
   border-bottom: 1px solid #dce9e1;
 }
 
@@ -126,9 +130,10 @@ footer.site-footer {
   font-weight: 700;
   text-align: center;
   line-height: 75px;
-  box-shadow:
-    0 8px 20px rgba(23, 107, 77, 0.22);
+  box-shadow: 0 8px 20px rgba(23, 107, 77, 0.22);
   border: 5px solid #ffffff;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .identity-text {
@@ -181,12 +186,6 @@ footer.site-footer {
   color: #17251f;
 }
 
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 50px;
-}
-
 .info-item {
   display: flex;
   flex-direction: column;
@@ -209,16 +208,11 @@ footer.site-footer {
   display: flex;
   align-items: center;
   gap: 20px;
-  background: linear-gradient(
-    135deg,
-    #163c30,
-    #176b4d
-  );
+  background: linear-gradient(135deg, #163c30, #176b4d);
   color: #ffffff;
   border-radius: 20px;
   padding: 30px 36px;
-  box-shadow:
-    0 10px 30px rgba(23, 107, 77, 0.15);
+  box-shadow: 0 10px 30px rgba(23, 107, 77, 0.15);
 }
 
 .quote-icon {
@@ -241,54 +235,13 @@ footer.site-footer {
   color: #b9d5c6;
 }
 
-.biodata {
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.biodata:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 16px 40px rgba(25, 55, 42, 0.12);
-}
-
-@media (max-width: 640px) {
-  .identity {
-    padding: 32px 24px;
-    gap: 18px;
-  }
-  .identity .avatar {
-    width: 72px;
-    height: 72px;
-    font-size: 1.4rem;
-  }
-  .identity-text h1 {
-    font-size: 1.5rem;
-  }
-  .biodata-content {
-    padding: 30px 24px 32px;
-  }
-  .info-grid {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-  }
-  .quote {
-    padding: 26px 24px;
-  }
-  .quote-icon {
-    font-size: 3rem;
-  }
-}
-
 .social-media {
   background: #ffffff;
   border: 1px solid #dfe8e3;
   border-radius: 20px;
   overflow: hidden;
   margin-top: 22px;
-  box-shadow:
-    0 12px 35px rgba(25, 55, 42, 0.08);
+  box-shadow: 0 12px 35px rgba(25, 55, 42, 0.08);
 }
 
 .social-content {
@@ -299,19 +252,15 @@ footer.site-footer {
   margin-bottom: 18px;
 }
 
-.social-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 30px;
-}
-
 .social-item {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 16px 0;
-  border-bottom: 1px solid #e5ebe7;
+  padding: 16px;
+  border: 1px solid #e5ebe7;
+  border-radius: 12px;
   text-decoration: none;
+  height: 100%;
 }
 
 .social-item-text {
@@ -328,4 +277,60 @@ footer.site-footer {
 .social-item-text strong {
   color: #26372f;
   font-size: 0.9rem;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+
+  .main-nav {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  header.site-header {
+    padding: 14px 20px;
+  }
+
+  main {
+    padding: 32px 16px;
+  }
+
+  .identity {
+    padding: 32px 24px;
+    gap: 18px;
+  }
+
+  .identity .avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 1.4rem;
+    line-height: 62px;
+  }
+
+  .identity-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .biodata-content {
+    padding: 30px 24px 32px;
+  }
+
+  .quote {
+    padding: 26px 24px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .quote-icon {
+    font-size: 3rem;
+  }
+
+  .social-content {
+    padding: 24px;
+  }
 }
